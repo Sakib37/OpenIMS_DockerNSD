@@ -1,0 +1,7 @@
+name: fhoss
+image:
+    upload: "check"
+    names:
+        - ubuntu:14.04
+vim_types:
+    - docker
