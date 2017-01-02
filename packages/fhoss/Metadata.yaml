@@ -1,6 +1,6 @@
 name: fhoss
 image:
-    upload: "check"
+    upload: false
     names:
         - ubuntu:14.04
 vim_types:
