@@ -27,10 +27,10 @@ if [ -z "$port" ]; then
 	port="6060"
 fi
 
-if [ -z "$diameter_p" ]; then
+if [ -z "$diameter_port" ]; then
 	# Actually this case should not happen, only if you renamed the config values ;)
-	echo "$SERVICE : diameter_p not defined, will use default : 3869"
-	diameter_p="3869"
+	echo "$SERVICE : diameter_port not defined, will use default : 3869"
+	diameter_port="3869"
 fi
 
 if [ -z "$name" ]; then
@@ -119,7 +119,7 @@ python $SCRIPTS_PATH/$SUBSITUTE_SCRIPT $SQL_OUTPUT_FILE VAR_SCSCF_PORT%$scscf_po
 python $SCRIPTS_PATH/$SUBSITUTE_SCRIPT $XML_OUTPUT_FILE VAR_DNS_REALM%$realm
 python $SCRIPTS_PATH/$SUBSITUTE_SCRIPT $XML_OUTPUT_FILE VAR_DNS_ENTRY%$bind9_entry
 python $SCRIPTS_PATH/$SUBSITUTE_SCRIPT $XML_OUTPUT_FILE VAR_DIAMETER_LISTEN%$mgmt
-python $SCRIPTS_PATH/$SUBSITUTE_SCRIPT $XML_OUTPUT_FILE VAR_DIAMETER_PORT%$diameter_p
+python $SCRIPTS_PATH/$SUBSITUTE_SCRIPT $XML_OUTPUT_FILE VAR_DIAMETER_PORT%$diameter_port
 python $SCRIPTS_PATH/$SUBSITUTE_SCRIPT $XML_OUTPUT_FILE VAR_DEFAULT_ROUTE%$fhoss_entry
 
 prepare_mysql()

@@ -1,14 +1,15 @@
 SERVICE="scscf"
+SCRIPTS_PATH="/scritps"
 PACKAGES="subversion openssl gcc g++ ant make bison flex curl libcurl4-gnutls-dev libxml2 libxml2-dev libmysqlclient-dev python-lxml"
 SVN_REPO="svn://svn.code.sf.net/p/openimscore/code/ser_ims/trunk"
 
 INSTALLATION_PATH="/opt/OpenIMSCore"
 
-SER_IMS="$INSTALLATION_PATH/ser_ims"
-LOG_DIR="$INSTALLATION_PATH/log"
-BIN_DIR="$INSTALLATION_PATH/bin"
-ETC_DIR="$INSTALLATION_PATH/etc"
-INIT_DIR="$ETC_DIR/init"
+SER_IMS="/opt/OpenIMSCore/ser_ims"
+LOG_DIR="/opt/OpenIMSCore/log"
+BIN_DIR="/opt/OpenIMSCore/bin"
+ETC_DIR="/opt/OpenIMSCore/etc"
+INIT_DIR="/opt/OpenIMSCore/etc/init"
 
 LOGFILE="/home/ubuntu/install.log"
 
@@ -16,7 +17,7 @@ ADD_CDP_SCRIPT="add_cdp.py"
 
 SUBSITUTE_SCRIPT="substitute.py"
 
-XML_OUTPUT_FILE="$ETC_DIR/scscf.xml"
-XML_INPUT_FILE="$ETC_DIR/var_scscf.xml"
-CFG_OUTPUT_FILE="$ETC_DIR/scscf.cfg"
-CFG_INPUT_FILE="$ETC_DIR/var_scscf.cfg"
+XML_OUTPUT_FILE="/opt/OpenIMSCore/etc/scscf.xml"
+XML_INPUT_FILE="/opt/OpenIMSCore/etc/var_scscf.xml"
+CFG_OUTPUT_FILE="/opt/OpenIMSCore/etc/scscf.cfg"
+CFG_INPUT_FILE="/opt/OpenIMSCore/etc/var_scscf.cfg"

@@ -35,10 +35,10 @@ if [ -z "$scscf_port" ]; then
 	scscf_port="6060"
 fi
 
-if [ -z "$scscf_diameter_p" ]; then
+if [ -z "$scscf_diameter_port" ]; then
 	# Actually this case should not happen, only if you renamed the config values ;)
-	echo "$SERVICE : there is no scscf_diameter_p! Using default : 3870"
-	scscf_diameter_p="3870"
+	echo "$SERVICE : there is no scscf_diameter_port! Using default : 3870"
+	scscf_diameter_port="3870"
 fi
 
 # Save variables related to icscf into a file to access it in a later phase
@@ -49,5 +49,5 @@ else
 fi
 printf "scscf_name=%s\n" \"$scscf_name\" >> $VARIABLE_BUCKET
 printf "scscf_port=%s\n" \"$scscf_port\" >> $VARIABLE_BUCKET
-printf "scscf_diameter_p=%s\n" \"$scscf_diameter_p\" >> $VARIABLE_BUCKET
+printf "scscf_diameter_port=%s\n" \"$scscf_diameter_port\" >> $VARIABLE_BUCKET
 

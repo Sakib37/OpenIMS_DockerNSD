@@ -29,10 +29,10 @@ if [ -z "$icscf_name" ]; then
 	icscf_name="icscf"
 fi
 
-if [ -z "$icscf_diameter_p" ]; then
+if [ -z "$icscf_diameter_port" ]; then
 	# Actually this case should not happen, only if you renamed the config values ;)
-	echo "$SERVICE : there is no icscf_diameter_p! Using default : 3869"
-	icscf_diameter_p="3869"
+	echo "$SERVICE : there is no icscf_diameter_port! Using default : 3869"
+	icscf_diameter_port="3869"
 fi
 
 # Save variables related to icscf into a file to access it in a later phase
@@ -42,5 +42,5 @@ else
 	touch $VARIABLE_BUCKET
 fi
 printf "icscf_name=%s\n" \"$icscf_name\" >> $VARIABLE_BUCKET
-printf "icscf_diameter_p=%s\n" \"$icscf_diameter_p\" >> $VARIABLE_BUCKET
+printf "icscf_diameter_port=%s\n" \"$icscf_diameter_port\" >> $VARIABLE_BUCKET
 

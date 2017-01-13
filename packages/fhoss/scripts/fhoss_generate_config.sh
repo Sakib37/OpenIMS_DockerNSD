@@ -19,10 +19,10 @@ else
 fi
 
 # Check for specific config values of the fhoss
-if [ -z "$diameter_p" ]; then
+if [ -z "$diameter_port" ]; then
 	# Actually this case should not happen, only if you renamed the config values ;)
-	echo "$SERVICE : diameter_p not defined, will use default : 3868"
-	diameter_p="3868"
+	echo "$SERVICE : diameter_port not defined, will use default : 3868"
+	diameter_port="3868"
 fi
 # Check for specific config values of the fhoss
 if [ -z "$name" ]; then
@@ -58,9 +58,9 @@ if [ -z "$scscf_port" ]; then
 	exit 1
 fi
 
-if [ -z "$scscf_diameter_p" ]; then
+if [ -z "$scscf_diameter_port" ]; then
 	# Actually this case should not happen, only if you renamed the config values ;)
-	echo "$SERVICE : there is no diameter_p for scscf!"
+	echo "$SERVICE : there is no diameter_port for scscf!"
 	exit 1
 fi
 
@@ -70,17 +70,17 @@ if [ -z "$icscf_name" ]; then
 	exit 1
 fi
 
-if [ -z "$icscf_diameter_p" ]; then
+if [ -z "$icscf_diameter_port" ]; then
 	# Actually this case should not happen, only if you renamed the config values ;)
-	echo "$SERVICE : there is no diameter_p for icscf!"
+	echo "$SERVICE : there is no diameter_port for icscf!"
 	exit 1
 fi
 
 # First thing to do is to add the cdp peer to the icscf,scscf to our template config file
 if [ -f "$HSS_VARIABLE_DIAMETER_PEER" ];then
 	echo "$SERVICE : Adding fqdn to xml config"
-	python $SCRIPTS_PATH/$ADD_CDP_SCRIPT $icscf_name $realm $icscf_diameter_p $HSS_VARIABLE_DIAMETER_PEER $HSS_VARIABLE_DIAMETER_PEER
-	python $SCRIPTS_PATH/$ADD_CDP_SCRIPT $scscf_name $realm $scscf_diameter_p $HSS_VARIABLE_DIAMETER_PEER $HSS_VARIABLE_DIAMETER_PEER
+	python $SCRIPTS_PATH/$ADD_CDP_SCRIPT $icscf_name $realm $icscf_diameter_port $HSS_VARIABLE_DIAMETER_PEER $HSS_VARIABLE_DIAMETER_PEER
+	python $SCRIPTS_PATH/$ADD_CDP_SCRIPT $scscf_name $realm $scscf_diameter_port $HSS_VARIABLE_DIAMETER_PEER $HSS_VARIABLE_DIAMETER_PEER
 fi
 
 # Copy our template files to the correct location
@@ -99,7 +99,7 @@ python $SCRIPTS_PATH/$SUBSITUTE_SCRIPT $HSS_VARIABLE_USERS_FILE VAR_SCSCF_NAME%$
 python $SCRIPTS_PATH/$SUBSITUTE_SCRIPT $HSS_VARIABLE_USERS_FILE VAR_SCSCF_PORT%$scscf_port
 python $SCRIPTS_PATH/$SUBSITUTE_SCRIPT $HSS_DIAMETER_PEER_FILE VAR_DNS_REALM%$realm
 python $SCRIPTS_PATH/$SUBSITUTE_SCRIPT $HSS_DIAMETER_PEER_FILE VAR_FHOSS_NAME%$name
-python $SCRIPTS_PATH/$SUBSITUTE_SCRIPT $HSS_DIAMETER_PEER_FILE VAR_FHOSS_DIA_PORT%$diameter_p
+python $SCRIPTS_PATH/$SUBSITUTE_SCRIPT $HSS_DIAMETER_PEER_FILE VAR_FHOSS_DIA_PORT%$diameter_port
 python $SCRIPTS_PATH/$SUBSITUTE_SCRIPT $HSS_DIAMETER_PEER_FILE VAR_FHOSS_DIA_BIND%$mgmt
 
 # now finally import userdata.sql since it has been overwritten
