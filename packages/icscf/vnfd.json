@@ -51,7 +51,7 @@
                "connection_point":[  
                   {  
   		   "floatingIp":"random",
-                     "virtual_link_reference":"mgmt"
+                   "virtual_link_reference":"mgmt"
                   } 
                ]
             }

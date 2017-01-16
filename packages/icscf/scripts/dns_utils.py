@@ -5,7 +5,8 @@
 
 # Script to handle adding additional nameservers
 
-# Author : lgr + oke
+# Author : lgr
+#        : Sakib37 + oke
 
 import sys
 import json

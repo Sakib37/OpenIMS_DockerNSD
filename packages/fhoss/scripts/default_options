@@ -1,6 +1,7 @@
 SERVICE="fhoss"
-SCRIPTS_PATH="/scritps"
-PACKAGES="subversion ant openjdk-7-jdk mysql-server-5.5 screen python-lxml"
+WEBSERVER_PORT=8000
+SCRIPTS_PATH="/scripts"
+PACKAGES="subversion ant openjdk-7-jdk mysql-server-5.5 screen python-lxml python-requests"
 FHOSS_REPO="svn://svn.code.sf.net/p/openimscore/code/FHoSS/trunk"
 
 JAVA_PATH="/usr/lib/jvm/java-7-openjdk-amd64/"

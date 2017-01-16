@@ -3,6 +3,7 @@
 #	Openbaton	#
 #########################
 # Author : lgr
+#        : Sakib37
 
 # fhoss installation script.
 
@@ -69,6 +70,7 @@ ant compile >> $LOGFILE 2>&1
 ant deploy >> $LOGFILE 2>&1
 
 sed -i -e "s/host=127.0.0.1/host=$mgmt/g" $HSS_PROPERTIES_FILE
+sed -i -e "s/port=8080/port=$WEBSERVER_PORT/g" $HSS_PROPERTIES_FILE
 
 # Import the basic database
 # But leave out the userdata.sql since we will adapt it with a different realm and scscf properties

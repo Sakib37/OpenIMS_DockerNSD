@@ -9,8 +9,7 @@
   		"fhoss_relation_joined.sh",
   		"icscf_relation_joined.sh",
   		"scscf_relation_joined.sh",
-  		"pcscf_relation_joined.sh",
-  		"mmechess_relation_joined.sh"
+  		"pcscf_relation_joined.sh"
          ]
       },
       {  
@@ -37,6 +36,14 @@
          {  
             "confKey":"useFloatingIpsForEntries",
             "value":"false"
+         },
+	 {
+            "confKey":"service_tcp_port",
+            "value":"53"
+         },
+         {
+            "confKey":"service_udp_port",
+            "value":"53"
          }
       ]
    },
