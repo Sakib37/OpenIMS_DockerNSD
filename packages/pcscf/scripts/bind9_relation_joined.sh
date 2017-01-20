@@ -14,7 +14,7 @@ fi
 
 if [ -z "$SCRIPTS_PATH" ]; then
 	echo "$SERVICE : Using default script path $SCRIPTS_PATH"
-	SCRIPTS_PATH="/opt/openbaton/scripts"
+	SCRIPTS_PATH="/scripts"
 else
 	echo "$SERVICE : Using custom script path $SCRIPTS_PATH"
 fi
@@ -70,17 +70,17 @@ printf "realm=%s\n" \"$bind9_realm\" >> $VARIABLE_BUCKET
 
 echo "$SERVICE: Establishing nameserver"
 
-# Get the network interface name to be able to add a search line to it permanently
-_real_iface=$(ip addr | grep -B 2 "$IPV4_ADDRESS" | head -1 | awk '{ print $2 }' | sed 's/://')
-
-# Use a python function to adapt the /etc/resolv.conf permanently
-# What we will do is the write the new bind9 nameserver into the head file...
-# Thus we ensure it will always be the first nameserver in the /etc/resolv.conf
-
-cd $SCRIPTS_PATH && python << END
-import dns_utils
-dns_utils.resolver_adapt_config_light("$_real_iface","$BIND9_IP","$bind9_realm", 'novalocal.')
-END
+## Get the network interface name to be able to add a search line to it permanently
+#_real_iface=$(ip addr | grep -B 2 "$IPV4_ADDRESS" | head -1 | awk '{ print $2 }' | sed 's/://')
+#
+## Use a python function to adapt the /etc/resolv.conf permanently
+## What we will do is the write the new bind9 nameserver into the head file...
+## Thus we ensure it will always be the first nameserver in the /etc/resolv.conf
+#
+#cd $SCRIPTS_PATH && python << END
+#import dns_utils
+#dns_utils.resolver_adapt_config_light("$_real_iface","$BIND9_IP","$bind9_realm", 'novalocal.')
+#END
 
 # Update the /etc/resolv.conf to be sure we have added the new nameserver
 resolvconf -u

@@ -21,6 +21,7 @@
       {  
          "event":"START",
          "lifecycle_events":[
+		"bind9_resolv_conf.sh",
   		"generate_zone_file.sh",
   		"bind9_restart.sh"
          ]
@@ -31,7 +32,7 @@
       "configurationParameters":[
          {  
             "confKey":"realm",
-            "value":"epc.mnc001.mcc001.3gppnetwork.org"
+            "value":"open-ims.test"
          },
          {  
             "confKey":"useFloatingIpsForEntries",

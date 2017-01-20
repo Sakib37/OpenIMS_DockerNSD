@@ -16,7 +16,7 @@ fi
 
 if [ -z "$SCRIPTS_PATH" ]; then
 	echo "$SERVICE : Using default script path $SCRIPTS_PATH"
-	SCRIPTS_PATH="/opt/openbaton/scripts"
+	SCRIPTS_PATH="/scripts"
 else
 	echo "$SERVICE : Using custom script path $SCRIPTS_PATH"
 fi
@@ -76,6 +76,7 @@ sed -i -e "s/port=8080/port=$WEBSERVER_PORT/g" $HSS_PROPERTIES_FILE
 # But leave out the userdata.sql since we will adapt it with a different realm and scscf properties
 
 echo "$SERVICE : Importing basic database"
+service mysql start >> /dev/null 2>&1
 mysql -u root < $HSS_DATABASE_FILE >> $LOGFILE 2>&1
 
 

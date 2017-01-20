@@ -14,5 +14,5 @@ fi
 
 echo "$SERVICE : Installing packages"
 # Install packages and redirect stderr to our logfile
-apt-get update >> $LOGFILE 2>&1 && echo "$SERVICE : Finished update now installing packages" && apt-get install -y -q bind9 >> $LOGFILE 2>&1
+apt-get update >> $LOGFILE 2>&1 && echo "$SERVICE : Finished update now installing packages" && apt-get install -y -q bind9 dnsutils>> $LOGFILE 2>&1
 echo "$SERVICE : Finished installing packages"

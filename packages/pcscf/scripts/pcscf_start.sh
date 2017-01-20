@@ -2,8 +2,7 @@
 #########################
 #	Openbaton	#
 #########################
-# Author : lgr
-#        : Sakib37
+# Author : Sakib37
 
 # If there are default options load them 
 if [ -f "$SCRIPTS_PATH/default_options" ]; then
@@ -12,13 +11,18 @@ fi
 
 # pcscf start script
 
-# Check if there was a icscf running already
-check=$(status $SERVICE | grep running)
-if [ -z "$check" ];then
-	echo "$SERVICE : not running , will start"
-	start $SERVICE
+# Check if there was a pcscf running already
+
+PID=`pidof -x $SERVICE.sh`
+if [ $PID ]; then
+    echo -e "\n$SERVICE is already running! Restarting $SERVICE\n";
+    kill -9 $(pidof -x $SERVICE.sh)
+    kill -9 $(pidof ser)
+    /opt/OpenIMSCore/$SERVICE.sh > /dev/null 2>&1 &
 else
-	echo "$SERVICE:  already running! Will restart"
-	restart $SERVICE
+    echo -e "\n $SERVICE is not running. Starting $SERVICE \n";
+    cd /opt/OpenIMSCore
+    cp -r ./ser_ims/cfg/* .
+    /opt/OpenIMSCore/$SERVICE.sh > /dev/null 2>&1 &
 fi
 

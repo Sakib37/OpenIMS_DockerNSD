@@ -1,13 +1,14 @@
 #!/bin/bash
+
 #########################
 #	Openbaton	#
 #########################
-# Author : lgr
-#        : Sakib37
+# Author : Sakib37
 
-# bind9 generate zone file scripts.
+# This script configures the name resolution in bind server
 
 # If there are default options load them 
+
 if [ -f "$SCRIPTS_PATH/default_options" ]; then
 	source $SCRIPTS_PATH/default_options
 fi
@@ -21,7 +22,6 @@ fi
 
 VARIABLE_BUCKET="$SCRIPTS_PATH/.variables"
 
-
 if [ -z "$realm" ]; then
 	# Actually this case should not happen, only if you renamed the config values ;)
 	echo "$SERVICE : there is no realm for bind9!"
@@ -32,10 +32,6 @@ fi
 if [ -f "$VARIABLE_BUCKET" ]; then
 	source $VARIABLE_BUCKET
 fi
-
-# Copy the zone template file to the final destination
-cp $SCRIPTS_PATH/$ZONEFILE $REALMFILE
-
 
 if [ ! $useFloatingIpsForEntries = "false" ]; then
 	if [ -z "$mgmt_floatingIp" ]; then
@@ -49,15 +45,16 @@ else
 	dns_ip=$mgmt
 fi
 
-# Fill the Bind9 related information
-python $SCRIPTS_PATH/substitute.py $REALMFILE VAR_DNS_REALM%$realm
-python $SCRIPTS_PATH/substitute.py $REALMFILE VAR_DNS_MGMT%$dns_ip
+# Insert forwarders to enable public domain resolution using google dns
+sed -i "12i \\\tforwarders {\n\t\t127.0.0.1;\n\t\t8.8.8.8;\n\t\t8.8.4.4;\n\t};" named.conf.options
 
-# Add zone entry 
-echo "" >> $CONFIG_FILE
-echo "zone \"$realm\" {" >> $CONFIG_FILE
-echo "	type master;" >> $CONFIG_FILE
-echo "	file \"$REALMFILE\";" >> $CONFIG_FILE
-echo "};" >> $CONFIG_FILE
-echo "" >> $CONFIG_FILE
+# Lets update the resolv.conf file
+# Make a bakup of the current file and make change in the original file
+cp /etc/resolv.conf{,_backup}
+printf "%s\n%s\n" "nameserver $mgmt" "search $realm" > /etc/resolv.conf
 
+cp /etc/resolvconf/resolv.conf.d/base{,_backup}
+printf "%s\n%s\n" "nameserver $mgmt" "search $realm" > /etc/resolvconf/resolv.conf.d/base
+
+# Update the /etc/resolv.conf to be sure we have added the new nameserver
+resolvconf -u

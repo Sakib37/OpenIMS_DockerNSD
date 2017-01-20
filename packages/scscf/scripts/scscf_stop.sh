@@ -2,8 +2,7 @@
 #########################
 #	Openbaton	#
 #########################
-# Author : lgr
-#        : Sakib37
+# Author : Sakib37
 
 # If there are default options load them 
 if [ -f "$SCRIPTS_PATH/default_options" ]; then
@@ -12,11 +11,12 @@ fi
 
 # scscf stop script
 
-# Check if there icscf waiting already
-check=$(service $SERVICE status | grep waiting)
-if [ -z "$check" ];then
-	echo "$SERVICE : not stopped , will stop"
-	stop $SERVICE
+# Check if there scscf waiting already
+PID=`pidof -x $SERVICE.sh`
+if [ $PID ]; then
+    echo -e "\n$SERVICE is already running! Stopping $SERVICE \n";
+    kill -9 $(pidof -x $SERVICE.sh)
+    kill -9 $(pidof ser)
 else
-	echo "$SERVICE: already stoppped!"
+    echo -e "\n $SERVICE: already stopped \n";
 fi

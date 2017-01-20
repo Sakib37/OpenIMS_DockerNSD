@@ -1,6 +1,6 @@
 SERVICE="icscf"
 SCRIPTS_PATH="/scripts"
-PACKAGES="subversion openssl gcc g++ ant make bison flex curl libcurl4-gnutls-dev libmysqlclient-dev libxml2 libxml2-dev mysql-server python-lxml python-requests"
+PACKAGES="subversion openssl gcc g++ ant make bison flex curl libcurl4-gnutls-dev libmysqlclient-dev libxml2 libxml2-dev mysql-server python-lxml python-requests dnsutils"
 SVN_REPO="svn://svn.code.sf.net/p/openimscore/code/ser_ims/trunk"
 INSTALLATION_PATH="/opt/OpenIMSCore"
 SER_IMS="/opt/OpenIMSCore/ser_ims"

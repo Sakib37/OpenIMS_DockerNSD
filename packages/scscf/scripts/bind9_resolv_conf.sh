@@ -53,32 +53,13 @@ if [ ! -z "$bind9_useFloatingIpsForEntries" ]; then
 	fi
 fi
 
-# Get the own ipv4 address ( We assume it is called "mgmt" here! )
-IPV4_ADDRESS=$mgmt
+# Lets update the resolv.conf file
+# Make a bakup of the current file and make change in the original file
+cp /etc/resolv.conf{,_backup}
+printf "%s\n%s\n" "nameserver $bind9_mgmt" "search $bind9_realm" > /etc/resolv.conf
 
-# Get the bind9 ipv4 address ( We assume it is called "mgmt" here! )
-BIND9_IP=$bind9_mgmt
-
-# Save variables related to bind9 into a file to access it in a later phase
-if [ -f "$VARIABLE_BUCKET" ]; then
-	source $VARIABLE_BUCKET
-else
-	touch $VARIABLE_BUCKET
-fi
-printf "realm=%s\n" \"$bind9_realm\" >> $VARIABLE_BUCKET
-
-echo "$SERVICE: Establishing nameserver"
-
-## Get the network interface name to be able to add a search line to it permanently
-#_real_iface=$(ip addr | grep -B 2 "$IPV4_ADDRESS" | head -1 | awk '{ print $2 }' | sed 's/://')
-#
-## Use a python function to adapt the /etc/resolv.conf permanently
-## What we will do is the write the new bind9 nameserver into the head file...
-## Thus we ensure it will always be the first nameserver in the /etc/resolv.conf
-#cd $SCRIPTS_PATH && python << END
-#import dns_utils
-#dns_utils.resolver_adapt_config_light("$_real_iface","$BIND9_IP","$bind9_realm", 'novalocal.')
-#END
+cp /etc/resolvconf/resolv.conf.d/base{,_backup}
+printf "%s\n%s\n" "nameserver $bind9_mgmt" "search $bind9_realm" > /etc/resolvconf/resolv.conf.d/base
 
 # Update the /etc/resolv.conf to be sure we have added the new nameserver
 resolvconf -u

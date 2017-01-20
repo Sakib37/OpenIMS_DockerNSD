@@ -6,6 +6,7 @@
       {  
          "event":"CONFIGURE",
          "lifecycle_events":[
+		"bind9_resolv_conf.sh",
   		"bind9_relation_joined.sh"
          ]
       },

@@ -16,7 +16,7 @@ fi
 
 if [ -z "$SCRIPTS_PATH" ]; then
 	echo "$SERVICE : Using default script path $SCRIPTS_PATH"
-	SCRIPTS_PATH="/opt/openbaton/scripts"
+	SCRIPTS_PATH="/scripts"
 else
 	echo "$SERVICE : Using custom script path $SCRIPTS_PATH"
 fi
