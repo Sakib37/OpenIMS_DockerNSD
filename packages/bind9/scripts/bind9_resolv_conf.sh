@@ -45,8 +45,12 @@ else
 	dns_ip=$mgmt
 fi
 
+# get current dns and search domain
+curr_dns_ip=`grep '^[[:space:]]*nameserver[[:space:]]\+' /etc/resolv.conf | head -1 | awk '{print $2}' `
+curr_dns_domain=`grep '^[[:space:]]*search[[:space:]]\+' /etc/resolv.conf | head -1 | awk '{print $2}' `
+
 # Insert forwarders to enable public domain resolution using google dns
-sed -i "12i \\\tforwarders {\n\t\t127.0.0.1;\n\t\t8.8.8.8;\n\t\t8.8.4.4;\n\t};" named.conf.options
+sed -i "12i \\\tforwarders {\n\t\t127.0.0.1;\n\t\t${curr_dns_ip};\n\t\t8.8.8.8;\n\t\t8.8.4.4;\n\t};" /etc/bind/named.conf.options
 
 # Lets update the resolv.conf file
 # Make a bakup of the current file and make change in the original file
