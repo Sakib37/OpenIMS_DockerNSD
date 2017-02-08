@@ -61,4 +61,6 @@ cp /etc/resolvconf/resolv.conf.d/base{,_backup}
 printf "%s\n%s\n" "nameserver $mgmt" "search $realm" > /etc/resolvconf/resolv.conf.d/base
 
 # Update the /etc/resolv.conf to be sure we have added the new nameserver
+service bind9 restart
 resolvconf -u
+

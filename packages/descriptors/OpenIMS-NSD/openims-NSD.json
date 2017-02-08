@@ -1,22 +1,22 @@
 {  
     "name":"OpenIMSCore Bind9 FHoSS",
     "vendor":"fokus",
-    "version":"2.0",
+    "version":"3.0.1",
     "vnfd":[  
         {
-            "id":"23f69498-ba9d-41bb-aca6-dce18f318695"
+            "id":"1364b677-eec8-4ea6-90c8-2b527b7aefe1"
         },
         {
-            "id":"4030031e-f590-42c3-ae76-1b33a5763d18"
+            "id":"4c719304-8689-4213-9e84-696e8bf4dd48"
         },
         {
-            "id":"4fc43381-80cb-4c79-90e5-40346dc80859"
+            "id":"735a21eb-c0ef-4ae7-992a-d0ac4512b014"
         },
         {
-            "id":"8d64cf79-4c13-45ae-a09b-cd4e7c4077e3"
+            "id":"e7c2c09e-4d76-4eb9-9ae6-a60459f9c373"
         },
         {
-            "id":"aeb8cdfe-9374-4d48-b694-d31a80330d68"
+            "id":"c679b175-51bf-4b3f-a2d0-e46888a76594"
         }
     ],
     "vld":[  

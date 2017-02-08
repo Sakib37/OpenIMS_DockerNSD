@@ -1,7 +1,7 @@
 {  
    "name":"scscf",
    "vendor":"fokus",
-   "version":"0.1",
+   "version":"3.0.1",
    "lifecycle_event":[  
       {  
          "event":"CONFIGURE",
