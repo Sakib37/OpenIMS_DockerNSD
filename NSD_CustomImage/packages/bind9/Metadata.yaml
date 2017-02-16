@@ -1,0 +1,8 @@
+name: bind9
+image:
+    upload: false
+    names:
+        - sakib37/openims-bind9:14.04
+vim_types:
+    - docker
+

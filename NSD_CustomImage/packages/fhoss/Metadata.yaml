@@ -1,0 +1,7 @@
+name: fhoss
+image:
+    upload: false
+    names:
+        - sakib37/openims-fhoss:14.04 
+vim_types:
+    - docker

@@ -1,0 +1,7 @@
+name: pcscf
+image:
+    upload: false
+    names:
+        - sakib37/openims-cscf:14.04
+vim_types:
+    - docker

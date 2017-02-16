@@ -1,0 +1,23 @@
+SERVICE="scscf"
+SCRIPTS_PATH="/scripts"
+PACKAGES="subversion openssl gcc g++ ant make bison flex curl libcurl4-gnutls-dev libxml2 libxml2-dev libmysqlclient-dev python-lxml python-requests dnsutils"
+SVN_REPO="svn://svn.code.sf.net/p/openimscore/code/ser_ims/trunk"
+
+INSTALLATION_PATH="/opt/OpenIMSCore"
+
+SER_IMS="/opt/OpenIMSCore/ser_ims"
+LOG_DIR="/opt/OpenIMSCore/log"
+BIN_DIR="/opt/OpenIMSCore/bin"
+ETC_DIR="/opt/OpenIMSCore/etc"
+INIT_DIR="/opt/OpenIMSCore/etc/init"
+
+LOGFILE="/home/install.log"
+
+ADD_CDP_SCRIPT="add_cdp.py"
+
+SUBSITUTE_SCRIPT="substitute.py"
+
+XML_OUTPUT_FILE="/opt/OpenIMSCore/etc/scscf.xml"
+XML_INPUT_FILE="/opt/OpenIMSCore/etc/var_scscf.xml"
+CFG_OUTPUT_FILE="/opt/OpenIMSCore/etc/scscf.cfg"
+CFG_INPUT_FILE="/opt/OpenIMSCore/etc/var_scscf.cfg"
