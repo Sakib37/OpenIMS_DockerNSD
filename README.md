@@ -1,6 +1,6 @@
 # OpenIMS_DockerNSD
 
-This repostiory container the Network Service Descriptor(NSD) in Open Baton(MANO framework) for OpenIMS project. 
+This repostiory contains the Network Service Descriptor(NSD) compatibale with Open Baton(MANO framework) for OpenIMS project. 
 
 'NSD_GeneralImage' contains all the required files and directories for deploying Open IMS using Ubuntu 14.04.
 
